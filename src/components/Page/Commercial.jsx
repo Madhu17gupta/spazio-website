@@ -1,83 +1,91 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import InteriorSection from "./InteriorSection";
-import GallerySection from "../GallerySection.jsx/GallerySection";  // ✅ corrected path
-import InfoSection from "../InfoSection"; // ✅ add this import
-import commercialImage from "../../assets/6.png";
-import officeImg from "../../assets/29.png"; // ✅ image for InfoSection (replace with real one)
-import Execution1 from "./Execution1";
 
-// 👇 Define your projects for the gallery
-import img1 from "../../assets/image7.png";
-import img2 from "../../assets/image8.png";
-import img3 from "../../assets/3.png";
-import img4 from "../../assets/image9.png";
-import img5 from "../../assets/image10.png";
-import img6 from "../../assets/6.png";
+// 🔥 Lazy load heavy components
+const GallerySection = lazy(() => import("../GallerySection.jsx/GallerySection"));
+const InfoSection = lazy(() => import("../InfoSection"));
+const Execution1 = lazy(() => import("./Execution1"));
+
+// ✅ use webp images
+import commercialImage from "../../assets/6.webp";
+import officeImg from "../../assets/29.webp";
+
+// gallery images (webp)
+import img1 from "../../assets/image7.webp";
+import img2 from "../../assets/image8.webp";
+import img3 from "../../assets/3.webp";
+import img4 from "../../assets/image9.webp";
+import img5 from "../../assets/image10.webp";
+import img6 from "../../assets/6.webp";
 
 const commercialProjects = [
   {
     img: img1,
     title: "Modern Office Design",
-    desc: "A sleek, brand-centric workspace designed to enhance productivity.",
+    desc: "A sleek workspace designed for productivity.",
   },
   {
     img: img2,
     title: "Retail Store Interior",
-    desc: "An immersive shopping environment with strategic layout and lighting.",
+    desc: "Strategic layout with immersive design.",
   },
   {
     img: img3,
-    title: "Corporate Reception Area",
-    desc: "Minimalist yet welcoming front desk concept for client engagement.",
+    title: "Corporate Reception",
+    desc: "Minimal yet welcoming space.",
   },
   {
     img: img4,
     title: "Restaurant Lounge",
-    desc: "Sophisticated ambiance with elegant textures and warm tones.",
+    desc: "Warm and elegant ambiance.",
   },
   {
     img: img5,
     title: "Showroom Setup",
-    desc: "High-impact display design to highlight brand products effectively.",
+    desc: "High-impact product display.",
   },
   {
     img: img6,
     title: "Coworking Hub",
-    desc: "Dynamic open-plan workspace that encourages collaboration.",
+    desc: "Collaborative workspace design.",
   },
 ];
 
 const Commercial = () => {
   return (
     <>
-      {/* 1️⃣ Hero Section */}
+      {/* Hero */}
       <InteriorSection
         title="Commercial Interiors"
-        description="SPAZIO delivers smart, functional, and brand-aligned commercial interiors that elevate workspaces and customer experiences alike."
+        description="Smart, functional, and brand-aligned commercial spaces."
         image={commercialImage}
       />
 
-      {/* 2️⃣ Execution Process */}
-      <Execution1 />
+      {/* Execution */}
+      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+        <Execution1 />
+      </Suspense>
 
-      {/* 3️⃣ Gallery Section */}
-      <GallerySection
-        title="Elegant & Functional Commercial Spaces"
-        subtitle="Our projects reflect strategic design thinking—where aesthetics meet business functionality."
-        projects={commercialProjects}
-      />
+      {/* Gallery */}
+      <Suspense fallback={<div className="text-center py-10">Loading gallery...</div>}>
+        <GallerySection
+          title="Elegant Commercial Spaces"
+          subtitle="Where aesthetics meet business functionality."
+          projects={commercialProjects}
+        />
+      </Suspense>
 
-      {/* 4️⃣ Info Section (same layout, new content) */}
-      <InfoSection
-        title="Designed for Business –
-Built for Impact-"
-        description="At SPAZIO, we design commercial environments that align with your brand, purpose, and operational needs. Whether it's offices, retail spaces, showrooms, salons, or studios—our team merges style with functionality to create spaces that inspire productivity, enhance customer experience, and leave a lasting impression. From concept to completion, every detail is crafted to elevate your business presence."
-        
-        buttonText="Contact Us"
-        buttonLink="/contact"
-        image={officeImg}
-        glowColor="bg-blue-400"
-      />
+      {/* Info */}
+      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+        <InfoSection
+          title="Designed for Business"
+          description="We create spaces that boost productivity and customer experience."
+          buttonText="Contact Us"
+          buttonLink="/contact"
+          image={officeImg}
+          glowColor="bg-blue-400"
+        />
+      </Suspense>
     </>
   );
 };

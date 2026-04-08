@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -6,129 +6,170 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
-import bgImage from "../../assets/41.jpg";
+
+// ✅ Background image
+import bgImage from "../../assets/41.webp";
 
 const ContactUs = () => {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
   const onSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
     const formData = new FormData(event.target);
-    formData.append("access_key", "d5d5bb10-fc47-472e-a8ab-eef9511fde96");
 
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    // 🔐 Secure ENV usage
+    formData.append(
+      "access_key",
+      import.meta.env.VITE_WEB3FORM_KEY
+    );
 
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    }).then((res) => res.json());
+    const json = JSON.stringify(Object.fromEntries(formData));
 
-    if (res.success) {
-      alert("✅ Message sent successfully!");
-      event.target.reset();
-    } else {
-      alert("❌ Failed to send. Please try again later.");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: json,
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setMessage("✅ Message sent successfully!");
+        event.target.reset();
+      } else {
+        setMessage("❌ Failed to send. Try again.");
+      }
+    } catch {
+      setMessage("⚠️ Network error. Try again.");
     }
+
+    setLoading(false);
   };
 
   return (
-    <section className="min-h-screen flex flex-col md:flex-row items-stretch justify-center">
-      {/* LEFT SIDE - Contact Form */}
-      <div className="md:w-1/2 w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg m-4 md:m-8 p-6 md:p-10 shadow-md">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-8 text-center md:text-left">
+    <section className="min-h-screen flex flex-col md:flex-row bg-gray-100">
+
+      {/* LEFT - FORM */}
+      <div className="md:w-1/2 w-full bg-white/90 backdrop-blur-md border rounded-lg m-4 p-6 md:p-10 shadow-lg">
+        
+        <h2 className="text-3xl font-semibold mb-8">
           Get in Touch
         </h2>
 
         <form onSubmit={onSubmit} className="space-y-6">
+
+          {/* First Name */}
           <input
             name="first_name"
-            type="text"
             placeholder="First Name"
             required
-            className="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black transition"
+            className="w-full border-b border-gray-400 py-3 bg-transparent focus:outline-none focus:border-black transition-all duration-300"
           />
+
+          {/* Last Name */}
           <input
             name="last_name"
-            type="text"
             placeholder="Last Name"
-            className="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black transition"
+            className="w-full border-b border-gray-400 py-3 bg-transparent focus:outline-none focus:border-black transition-all duration-300"
           />
+
+          {/* Email */}
           <input
             name="email"
             type="email"
-            placeholder="Your Email Address"
+            placeholder="Email"
             required
-            className="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black transition"
+            className="w-full border-b border-gray-400 py-3 bg-transparent focus:outline-none focus:border-black transition-all duration-300"
           />
+
+          {/* Project Type */}
           <input
             name="project_type"
-            type="text"
-            placeholder="Type of Project (e.g. Residential / Commercial)"
-            className="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black transition"
+            placeholder="Project Type"
+            className="w-full border-b border-gray-400 py-3 bg-transparent focus:outline-none focus:border-black transition-all duration-300"
           />
+
+          {/* Message */}
           <textarea
             name="message"
-            placeholder="Tell us about your project or query..."
-            rows="4"
+            placeholder="Your message..."
             required
-            className="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black transition resize-none"
+            rows="4"
+            className="w-full border-b border-gray-400 py-3 bg-transparent focus:outline-none focus:border-black resize-none transition-all duration-300"
           ></textarea>
 
+          {/* Button */}
           <button
             type="submit"
-            className="w-full md:w-auto px-10 py-3 bg-black text-white rounded-full font-medium tracking-wide hover:bg-gray-800 transition-all duration-300 shadow-[4px_4px_0px_#333] hover:shadow-[2px_2px_0px_#000] active:scale-95"
+            disabled={loading}
+            className="w-full bg-black text-white py-3 rounded-sm 
+            shadow-[4px_4px_0px_#333] hover:shadow-[2px_2px_0px_#000] 
+            active:scale-95 transition-all duration-200 disabled:opacity-60"
           >
-            SEND MESSAGE
+            {loading ? "Sending..." : "SEND MESSAGE"}
           </button>
+
+          {/* Message */}
+          {message && (
+            <p className="text-sm text-center mt-2 font-medium text-green-600">
+              {message}
+            </p>
+          )}
         </form>
       </div>
 
-      {/* RIGHT SIDE - Info + Background */}
-      <div
-        className="md:w-1/2 w-full relative rounded-lg m-4 md:m-8 bg-cover bg-center flex flex-col justify-center text-white px-6 md:px-10 py-16 min-h-[400px]"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
+      {/* RIGHT - IMAGE + INFO */}
+      <div className="md:w-1/2 w-full relative m-4 rounded-lg overflow-hidden min-h-[400px] group">
 
-        <div className="relative z-10 space-y-6 text-center md:text-left">
-          <h1 className="text-3xl md:text-4xl font-light">SPAZIO</h1>
-          <h2 className="text-2xl md:text-3xl font-semibold">
+        {/* Background Image */}
+        <img
+          src={bgImage}
+          alt="office"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 text-white p-6 md:p-10 space-y-5">
+          
+          <h1 className="text-3xl font-light">SPAZIO</h1>
+          <h2 className="text-2xl font-semibold">
             Let's Start a Project
           </h2>
-          <p className="max-w-lg text-gray-200 leading-relaxed mx-auto md:mx-0 text-sm md:text-base">
-            Feel free to reach out or visit us — our team is committed to
-            responding to all inquiries within 24 hours on working days.
+
+          <p className="text-gray-200 text-sm">
+            Feel free to reach out — we respond within 24 hours.
           </p>
 
-          <div className="space-y-4 text-gray-200 text-sm md:text-base">
-            <p className="flex flex-col sm:flex-row sm:items-center justify-center md:justify-start gap-2">
-              <FaEnvelope className="inline text-white text-lg" />
-              <span>info@spaziointerior.in</span>
+          <div className="space-y-3 text-sm">
+            <p className="flex items-center gap-2">
+              <FaEnvelope /> info@spaziointerior.in
             </p>
-            <p className="flex flex-col sm:flex-row sm:items-center justify-center md:justify-start gap-2">
-              <FaPhoneAlt className="inline text-white text-lg" />
-              <span>+91 97300 26919</span>
+            <p className="flex items-center gap-2">
+              <FaPhoneAlt /> +91 97300 26919
             </p>
-            <p className="flex flex-col sm:flex-row sm:items-center justify-center md:justify-start gap-2 max-w-sm mx-auto md:mx-0">
-              <FaMapMarkerAlt className="inline text-white text-lg" />
-              <span>
-                Vishwakarma Paradise, Phase 1, Ambadi Rd, Sai Nagar, Vasai West,
-                Maharashtra 401202
-              </span>
+            <p className="flex items-start gap-2">
+              <FaMapMarkerAlt />
+              Vasai West, Maharashtra
             </p>
           </div>
 
-          <div className="flex justify-center md:justify-start gap-6 mt-6">
-            <a href="#" className="text-white text-xl hover:text-gray-300">
-              <FaLinkedin />
-            </a>
-            <a href="#" className="text-white text-xl hover:text-gray-300">
-              <FaInstagram />
-            </a>
+          {/* Social Icons */}
+          <div className="flex gap-5 pt-4 text-lg">
+            <FaLinkedin className="cursor-pointer hover:scale-110 transition" />
+            <FaInstagram className="cursor-pointer hover:scale-110 transition" />
           </div>
+
         </div>
       </div>
     </section>

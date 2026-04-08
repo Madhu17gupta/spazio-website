@@ -26,26 +26,8 @@ const WhatsApp = () => {
   return (
     <div className="fixed bottom-6 right-6 flex flex-col items-end gap-4 z-50">
 
-      {/* WhatsApp popup */}
-      {showPopup && (
-        <div className="bg-white rounded-xl shadow-lg p-3 w-60 text-sm animate-fadeIn mb-2">
-          <div className="font-semibold mb-1 flex items-center gap-1">
-            Hi! <span>👋</span>
-          </div>
-          <p className="text-gray-700 mb-2">
-            Want to chat with us on WhatsApp?
-          </p>
-          <button
-            onClick={() => {
-              window.open(whatsappLink, "_blank");
-              setShowPopup(false);
-            }}
-            className="bg-green-500 text-white px-3 py-1.5 rounded-lg text-sm hover:bg-green-600 transition"
-          >
-            Yes, Chat Now
-          </button>
-        </div>
-      )}
+      
+      
 
       {/* Scroll-to-top button */}
       {showScroll && (

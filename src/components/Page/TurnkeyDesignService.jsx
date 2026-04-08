@@ -1,19 +1,23 @@
-import React from "react";
-import InteriorSection from "./InteriorSection";
-import GallerySection from "../GallerySection.jsx/GallerySection";
-import InfoSection from "../InfoSection";
-import Execution3 from "./Execution3";
+import React, { lazy, Suspense } from "react";
 
-import turnkeyImage from "../../assets/41.jpg";
-import turnkeyProcess from "../../assets/ba3.jpg"; // ✅ image for InfoSection
+// 🔥 Lazy load components
+const InteriorSection = lazy(() => import("./InteriorSection"));
+const GallerySection = lazy(() => import("../GallerySection.jsx/GallerySection"));
+const InfoSection = lazy(() => import("../InfoSection"));
+const Execution3 = lazy(() => import("./Execution3"));
 
-import img1 from "../../assets/ba.jpg";
-import img2 from "../../assets/ba1.jpg";
-import img3 from "../../assets/3.png";
-import img4 from "../../assets/image15.png";
-import img5 from "../../assets/image16.png";
-import img6 from "../../assets/ba2.jpg";
+// ✅ Import images properly (NO require ❌)
+import turnkeyImage from "../../assets/41.webp";
+import turnkeyProcess from "../../assets/ba3.webp";
 
+import img1 from "../../assets/ba.webp";
+import img2 from "../../assets/ba1.webp";
+import img3 from "../../assets/3.webp";
+import img4 from "../../assets/image15.webp";
+import img5 from "../../assets/image16.webp";
+import img6 from "../../assets/ba2.webp";
+
+// 👇 Clean data
 const turnkeyProjects = [
   {
     img: img1,
@@ -23,61 +27,62 @@ const turnkeyProjects = [
   {
     img: img2,
     title: "Residential Turnkey Projects",
-    desc: "Fully managed luxury homes, delivered ready to move in.",
+    desc: "Fully managed luxury homes.",
   },
   {
     img: img3,
     title: "Corporate Office Execution",
-    desc: "Precision-built office interiors with timely delivery.",
+    desc: "Precision-built office interiors.",
   },
   {
     img: img4,
-    title: "Retail & Hospitality Projects",
-    desc: "Bringing brand experiences to life through design and execution.",
+    title: "Retail & Hospitality",
+    desc: "Brand-driven design execution.",
   },
   {
     img: img5,
     title: "Luxury Villa Design",
-    desc: "A seamless transformation experience — from dream to reality.",
+    desc: "Dream to reality transformation.",
   },
   {
     img: img6,
-    title: "Modular Fit-Out Projects",
-    desc: "Custom furniture and modular systems for fast-track interiors.",
+    title: "Modular Fit-Out",
+    desc: "Custom fast-track interiors.",
   },
 ];
 
 const TurnkeyDesignService = () => {
   return (
-    <>
-      {/* 1️⃣ Hero Section */}
+    <Suspense fallback={<div className="text-center py-20">Loading...</div>}>
+
+      {/* 1️⃣ Hero */}
       <InteriorSection
         title="Turnkey Interior Solutions"
-        description="From vision to execution, SPAZIO provides end-to-end interior design and build services for hassle-free transformations."
+        description="From vision to execution, SPAZIO provides end-to-end interior design and build services."
         image={turnkeyImage}
       />
 
-      {/* 2️⃣ Execution Section */}
+      {/* 2️⃣ Execution */}
       <Execution3 />
 
-      {/* 3️⃣ Gallery Section */}
+      {/* 3️⃣ Gallery */}
       <GallerySection
         title="Turnkey Projects — From Concept to Completion"
-        subtitle="Every project is handled with precision, commitment, and creative collaboration for seamless delivery."
+        subtitle="Handled with precision and creativity."
         projects={turnkeyProjects}
       />
 
-      {/* 4️⃣ Info Section */}
+      {/* 4️⃣ Info */}
       <InfoSection
         title="Designed for Delivery – Built for Excellence"
-        description="At SPAZIO, our Turnkey Solutions bring design, execution, and delivery together under one roof. From concept development and material selection to construction, furnishing, and final handover — we take full ownership of your project. Whether it’s a residence, office, or commercial space, our team ensures precision, transparency, and timeliness at every stage. Each turnkey project is engineered for beauty, functionality, and peace of mind — so you can simply step in and start living your vision."
-        
+        description="Complete ownership from concept to handover with precision and transparency."
         buttonText="Start Your Project"
         buttonLink="/contact"
         image={turnkeyProcess}
         glowColor="bg-orange-400"
       />
-    </>
+
+    </Suspense>
   );
 };
 

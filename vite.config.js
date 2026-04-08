@@ -4,5 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react() ,tailwindcss()],
+  plugins: [react(), tailwindcss()],
+  base: '/spazio-website/',  // 👈 very important for GitHub Pages
 })

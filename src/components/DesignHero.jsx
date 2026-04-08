@@ -5,51 +5,48 @@ import { SlideUp } from "../Animation/animate";
 
 const DesignHero = () => {
   return (
-    <section className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
+    <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
+
       {/* Subheading */}
       <motion.h3
-        variants={SlideUp(0.2)}
+        variants={SlideUp(0.1)}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: false, amount: 0.2 }}
-        className="text-gray-700 font-medium tracking-wide text-lg md:text-xl mb-2"
+        viewport={{ once: true }} // ✅ only once
+        className="text-gray-700 text-base md:text-lg mb-2"
       >
         We Don’t Just Design Spaces — We Design Dreams
       </motion.h3>
 
-      {/* Main Heading */}
+      {/* Heading */}
       <motion.h1
-        variants={SlideUp(0.3)}
+        variants={SlideUp(0.2)}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: false, amount: 0.2 }}
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-800 mb-10 max-w-4xl leading-snug"
+        viewport={{ once: true }}
+        className="text-3xl md:text-5xl font-semibold text-gray-800 mb-8 max-w-3xl leading-snug"
       >
         We design interiors that bring your dreams to life.
       </motion.h1>
 
-      {/* CTA Button */}
+      {/* CTA */}
       <motion.div
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.2 }}
       >
         <Link
           to="/contact"
-          className="bg-[#7a7575]/60 backdrop-blur-md text-white px-8 py-4 rounded-full shadow-lg border border-white/40 
-                     hover:bg-[#7a7575]/80 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-300 flex items-center gap-2"
+          className="bg-black text-white px-6 py-3 rounded-full 
+                     hover:bg-gray-800 transition flex items-center gap-2"
         >
-          <span className="font-semibold tracking-wide">
-            Plan Your Space with Us
+          <span className="font-medium">
+            Plan Your Space
           </span>
-          <span className="text-xl">🗓️</span>
+          <span>🗓️</span>
         </Link>
       </motion.div>
 
-      {/* Ambient shadow / vignette for depth */}
-      <div className="absolute inset-0 pointer-events-none rounded-xl"></div>
     </section>
   );
 };

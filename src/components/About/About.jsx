@@ -1,21 +1,38 @@
-import React from 'react'
-import About1 from './About1'
-import MeetTheFounder from './MeetTheFounder'
-import OurJourney from './OurJourney'
-import TeamBelief from './TeamBelief'
-import MeetOurTeam from './MeetOurTeam'
+import React, { lazy, Suspense } from "react";
+
+// ✅ Lazy load all sections
+const About1 = lazy(() => import("./About1"));
+const MeetTheFounder = lazy(() => import("./MeetTheFounder"));
+const OurJourney = lazy(() => import("./OurJourney"));
+const TeamBelief = lazy(() => import("./TeamBelief"));
+const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
 
 const About = () => {
   return (
     <div>
-      <About1 />
-      <MeetTheFounder />
-      <OurJourney />
-      <TeamBelief />
-      <MeetOurTeam />
+
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <About1 />
+      </Suspense>
+
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <MeetTheFounder />
+      </Suspense>
+
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <OurJourney />
+      </Suspense>
+
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <TeamBelief />
+      </Suspense>
+
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <MeetOurTeam />
+      </Suspense>
 
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
