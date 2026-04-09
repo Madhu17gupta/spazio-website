@@ -21,7 +21,7 @@ const WhatsApp = () => {
 
   // WhatsApp link (replace number and message)
   const whatsappLink =
-    "https://wa.me/919792254987?text=Hi!%20I%20want%20to%20know%20more%20about%20your%20services.";
+    "https://wa.me/919730026919?text=Hi!%20I%20want%20to%20know%20more%20about%20your%20services.";
 
   return (
     <div className="fixed bottom-6 right-6 flex flex-col items-end gap-4 z-50">
