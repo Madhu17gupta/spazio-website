@@ -31,7 +31,7 @@ const Execution = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-gray-600 mb-6"
         >
-          At SPAZIO, we craft commercial interiors that reflect your brand and improve functionality.
+         At SPAZIO, we craft commercial interiors that reflect your brand identity, support functionality, and enhance the customer and employee experience. Whether it’s a retail outlet, office, showroom, or hospitality space, our designs are tailored to create the perfect balance between aesthetics and purpose. With a deep understanding of layout planning, brand integration, and practical execution, we deliver spaces that are visually appealing, efficient, and built to inspire. Let Spazio transform your commercial environment into a space that works for your business and speaks to your vision.
         </motion.p>
 
         <Link
@@ -46,35 +46,48 @@ const Execution = () => {
       <div className="md:w-1/2 relative mt-10 md:mt-0 flex justify-center items-center">
 
         {/* img1 */}
-        <img
+        <motion.img
+        initial={{ opacity: 0, x: 100  }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img1}
-          loading="lazy"
           alt="Planning"
-          className="absolute -top-6 left-4 w-36 h-48 object-cover rounded shadow"
+          className="absolute -top-10 right-30 w-56 h-70 object-cover rounded-sm shadow-lg "
         />
 
         {/* img2 */}
-        <img
+         <motion.img
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img2}
-          loading="lazy"
           alt="Design"
-          className="absolute -top-10 right-4 w-36 h-44 object-cover rounded shadow"
+          className="absolute -top-30 -right-30 w-56 h-60 object-cover rounded-sm shadow-lg"
         />
 
         {/* img3 */}
-        <img
+        <motion.img
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img3}
-          loading="lazy"
           alt="Execution"
-          className="w-40 h-72 object-cover rounded shadow-lg"
+          className="w-[220px] h-[480px]  object-cover rounded-sm shadow-xl absolute -top-28 left-5"
         />
 
+
         {/* img4 */}
-        <img
+        <motion.img
+         initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img4}
-          loading="lazy"
           alt="Execution"
-          className="absolute bottom-0 right-6 w-36 h-32 object-cover rounded shadow"
+          className="w-[220px] h-[230px]  object-cover rounded-sm shadow-xl absolute top-35 left-125 -right-20"
         />
       </div>
 

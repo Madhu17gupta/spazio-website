@@ -30,8 +30,7 @@ const Execution2 = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-gray-600 mb-6"
         >
-          At SPAZIO, we design industrial interiors focused on workflow,
-          safety, and scalability—creating smart and efficient environments.
+           At SPAZIO , we design industrial interiors that combine operational efficiency with brand-aligned aesthetics. From warehouses and manufacturing units to R&D labs and distribution centers, our solutions prioritize workflow, safety, and scalability. With expertise in space optimization, functional zoning, and durable material selection, we deliver environments that support productivity while reinforcing your business identity. Let Spazio transform your industrial setup into a smart, structured, and future-ready space.
         </motion.p>
 
         <Link
@@ -46,27 +45,36 @@ const Execution2 = () => {
       <div className="md:w-1/2 relative mt-10 md:mt-0 flex justify-center items-center">
 
         {/* img1 */}
-        <img
+         <motion.img
+           initial={{ opacity: 0, y: 80 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img1}
-          loading="lazy"
-          alt="Industrial"
-          className="absolute -top-6 left-4 w-40 h-52 object-cover rounded shadow"
+          alt="Planning"
+          className="absolute -top-10 right-30 w-66 h-70 object-cover rounded-sm shadow-lg "
         />
 
         {/* img2 */}
-        <img
+         <motion.img
+           initial={{ opacity: 0, y: 100 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.8 }}
           src={img2}
-          loading="lazy"
-          alt="Industrial"
-          className="absolute -top-10 right-4 w-40 h-48 object-cover rounded shadow"
+          alt="Design"
+          className="absolute -top-30 -right-30 w-66 h-60 object-cover rounded-sm shadow-lg"
         />
 
         {/* img3 */}
-        <img
-          src={img3}
-          loading="lazy"
-          alt="Industrial"
-          className="w-48 h-40 object-cover rounded shadow-lg"
+        <motion.img
+           initial={{ opacity: 0, y: 120 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
+          src={img4}
+          alt="Execution"
+          className="w-[280px] h-[230px]  object-cover rounded-sm shadow-xl absolute top-35 left-5 -right-20"
         />
 
       </div>

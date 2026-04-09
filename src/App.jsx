@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Whatsapp from "./components/Whatsapp/Whatsapp";
-import ScrollToTop from "./components/ScrollToTop"; // ✅ correct import
+import ScrollToTop from "./components/ScrollToTop";
 
 const Home = lazy(() => import("./components/Home/Home"));
 const About = lazy(() => import("./components/About/About"));
@@ -17,11 +17,15 @@ const Service = lazy(() => import("./components/Services/Service"));
 const Contact = lazy(() => import("./components/Contact/Contact"));
 const DesignHero = lazy(() => import("./components/DesignHero"));
 
+// ✅ Lazy load legal pages (better performance)
+const PrivacyPolicy = lazy(() => import("./components/Page/PrivacyPolicy"));
+const TermsConditions = lazy(() => import("./components/Page/TermsConditions"));
+
 function App() {
   return (
     <Router basename="/spazio-website">
 
-      <ScrollToTop /> {/* 🔥 CORRECT PLACE */}
+      <ScrollToTop />
 
       <Navbar />
       <Whatsapp />
@@ -39,6 +43,10 @@ function App() {
             <Route path="/projects" element={<Project />} />
             <Route path="/services" element={<Service />} />
             <Route path="/contact" element={<Contact />} />
+
+            {/* ✅ NEW ROUTES */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
           </Routes>
         </div>
 

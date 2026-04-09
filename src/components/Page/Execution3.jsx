@@ -30,8 +30,7 @@ const Execution3 = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-gray-600 mb-6"
         >
-          Our turnkey solutions handle everything—from design to execution—
-          delivering ready-to-use spaces with quality and precision.
+          At SPAZIO, our Turnkey Interior Solutions are designed for clients who value simplicity, precision, and trust. From concept to completion, we manage every detail — design, execution, materials, and finishing — so you can enjoy a smooth, stress-free experience. Our integrated team of architects, engineers, and designers work in perfect sync to deliver spaces that reflect your vision with flawless craftsmanship. With transparent costing, quality assurance, and on-time delivery, we transform your ideas into ready-to-live environments. Just turn the key — and step into a space that’s beautifully complete, inside and out.
         </motion.p>
 
         <Link
@@ -46,27 +45,37 @@ const Execution3 = () => {
       <div className="md:w-1/2 relative mt-10 md:mt-0 flex justify-center items-center">
 
         {/* img1 */}
-        <img
+         <motion.img
+           initial={{ opacity: 0, y: 80 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img1}
-          loading="lazy"
-          alt="Turnkey"
-          className="absolute -top-6 left-4 w-40 h-52 object-cover rounded shadow"
+          alt="Planning"
+          className="absolute -top-10 right-30 w-66 h-70 object-cover rounded-sm shadow-lg "
         />
 
         {/* img2 */}
-        <img
+        <motion.img
+           initial={{ opacity: 0, y: 100 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.8 }}
           src={img2}
-          loading="lazy"
-          alt="Turnkey"
-          className="absolute -top-10 right-4 w-40 h-48 object-cover rounded shadow"
+          alt="Design"
+          className="absolute -top-30 -right-30 w-66 h-60 object-cover rounded-sm shadow-lg"
         />
 
+
         {/* img3 */}
-        <img
-          src={img3}
-          loading="lazy"
-          alt="Turnkey"
-          className="w-48 h-40 object-cover rounded shadow-lg"
+        <motion.img
+           initial={{ opacity: 0, y: 120 }}
+           whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
+          src={img4}
+          alt="Execution"
+          className="w-[280px] h-[230px]  object-cover rounded-sm shadow-xl absolute top-35 left-5 -right-20"
         />
 
       </div>

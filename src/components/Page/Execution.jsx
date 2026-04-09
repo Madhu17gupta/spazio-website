@@ -30,8 +30,7 @@ const Execution = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-gray-600 leading-relaxed mb-6"
         >
-          At SPAZIO, we design homes that reflect your lifestyle and taste.
-          We combine elegance with comfort to create timeless living spaces.
+         At SPAZIO, we design homes that reflect your lifestyle and taste. Our residential interior solutions blend elegance with everyday comfort. From compact apartments to luxurious villas, we turn your vision into reality. Our designers focus on smart layouts, refined details, and quality materials to craft spaces that feel both stylish and personal. With expert guidance and a passion for design, we create homes that are warm, practical, and timeless. A skilled interior designer can truly elevate your space and add a distinct charm that sets it apart.
         </motion.p>
 
         <Link
@@ -46,29 +45,39 @@ const Execution = () => {
       <div className="md:w-1/2 relative mt-10 md:mt-0 flex justify-center items-center">
 
         {/* Top-left */}
-        <img
+        <motion.img
+             initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.3, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.4 }}
           src={img1}
           alt="Planning"
-          loading="lazy"
-          className="absolute -top-6 left-4 w-40 h-52 object-cover rounded shadow"
+          className="absolute -top-10 right-30 w-56 h-70 object-cover rounded-sm shadow-lg "
         />
 
         {/* Top-right */}
-        <img
+       <motion.img
+             initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.6 }}
           src={img2}
           alt="Design"
-          loading="lazy"
-          className="absolute -top-12 right-4 w-40 h-52 object-cover rounded shadow"
+          className="absolute -top-30 -right-30 w-56 h-70 object-cover rounded-sm shadow-lg"
         />
 
         {/* Center */}
-        <img
+        <motion.img
+             initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.9, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.8}}
           src={img3}
           alt="Execution"
-          loading="lazy"
-          className="w-48 h-64 object-cover rounded shadow-lg"
+          className="w-[220px] h-[300px]  object-cover rounded-sm shadow-xl absolute top-15 left-5"
         />
       </div>
+      
 
     </section>
   );
